@@ -29,10 +29,6 @@ a {
   color: #D73953;
 }
 
-Just above the section-tagline declaration, create a new declaration targeting the class section-header
-
-    Set horizontal alignment of that class with section-header-align
-
 .section-header {
   text-align: var(--section-header-align);
 }
