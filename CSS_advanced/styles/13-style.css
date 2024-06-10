@@ -1,11 +1,3 @@
-/* Ensure that the declaration targeting anchor elements only targets those containing a hyperlink */
-/* Directly after this declaration, target the visited state for the link */
-  /* 	Italicize the text */
-/* Directly after the visited state, target the hover state for the link */
-  /* 	Decorate the links with an underline when hovering */
-/* Directly after the hover state, target the active state for the link */
-  /* 	Set the color of the background with the variable color-light-grey */
-
 html {
   scroll-behavior: smooth;
   font-size: 62.5%;
@@ -24,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-weight-bold);
 }
 
-a[href] {
+a:link {
   color: #161616;
   text-decoration: none;
 }
