@@ -131,7 +131,7 @@ ul.row {
 .col-1-2 {
   width: 50%;
   float: left;
-  padding: 50%;
+  padding: 0.5rem;
 }
 
 .col-1-3 {
