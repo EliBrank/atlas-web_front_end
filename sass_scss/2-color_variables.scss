@@ -1,0 +1,16 @@
+$color_primary: #3D3D3D;
+$color_secondary: #6D6D6D;
+
+body {
+  color: $color_primary;
+  background-color: $color_secondary;
+}
+
+p {
+  color: $color_primary;
+}
+
+h2 {
+  background-color: $color_secondary;
+}
+
