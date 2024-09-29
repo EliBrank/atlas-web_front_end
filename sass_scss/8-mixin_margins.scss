@@ -1,0 +1,12 @@
+@mixin margins_even($margin_value) {
+  margin-left: $margin_value;
+  margin-right: $margin_value;
+}
+
+body {
+  @include margins_even(10px);
+}
+
+div {
+  @include margins_even(15px);
+}
