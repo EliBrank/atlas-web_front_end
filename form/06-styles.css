@@ -160,7 +160,7 @@ a:active {
 }
 
 .button-primary:hover {
-  color: var(--color-primaryj);
+  color: var(--color-primary);
   background: var(--color-white);
 }
 
