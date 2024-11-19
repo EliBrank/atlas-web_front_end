@@ -1,6 +1,7 @@
 function changeMode(size, weight, transform, background, color) {
   const page = document.documentElement;
 
+  // establishes closure, allows new functions (mode changers) to build from this
   return () => {
     page.style.fontSize = size;
     page.style.fontWeight = weight;
