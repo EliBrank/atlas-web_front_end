@@ -16,7 +16,7 @@ function isPrime(n) {
 function countPrimeNumbers(upperLimit = 100) {
   let numPrimeNumbers = 0;
 
-  for (let i = 2; i < upperLimit; i++) {
+  for (let i = 2; i <= upperLimit; i++) {
     if (isPrime(i)) {
       numPrimeNumbers++
     }
