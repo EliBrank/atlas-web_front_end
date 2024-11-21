@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 3</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+      integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+      crossorigin="anonymous">
+    </script>
+    <script>
+      $(document).ready(function() {
+        function createFamilyTree() {
+          const $table = $('<table>');
+          const $thead = $('<thead>');
+          const $tbody = $('<tbody>');
+          const $headRow = $('<tr>');
+
+          const headers = ['Firstname', 'Lastname'];
+
+          // creates, adds table header cell for each entry in headers array to header row
+          headers.forEach(header => {
+            $headRow.append($('<th>').text(header));
+          });
+          $thead.append($headRow);
+          $table.append($thead);
+
+          const tableData = [
+            ['Guillaume', 'Salva'],
+            ['Paulette', 'Salva'],
+            ['Antoine', 'Salva']
+          ];
+
+          // given each data entry, create row, populate row with two cells, then add to table body
+          tableData.forEach(entry => {
+            const $row = $('<tr>');
+            $row.append($('<td>').text(entry[0]));
+            $row.append($('<td>').text(entry[1]));
+            $tbody.append($row);
+          });
+
+          $table.append($tbody);
+
+          $('body').append($table);
+        }
+
+        createFamilyTree();
+      });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
