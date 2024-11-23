@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 8</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous">
+    </script>
+    <script>
+      $(document).ready(function() {
+        function createSearchForm() {
+          const $form = $('<form>');
+
+          // search inputs
+          const $searchField = $('<input id="search">').attr('type', 'text');
+
+          $form.append($searchField);
+
+          // submit button
+          const $submitButton = $('<input>').attr({
+            'type': 'submit',
+            'value': 'Submit'
+          });
+
+          $form.append($submitButton);
+
+          // click functionality
+          $form.on('submit', function(event) {
+            event.preventDefault();
+
+            const searchQuery = $searchField.val();
+
+            queryWikipedia(searchQuery);
+          });
+
+          // articles list
+          $form.append($('<ul id="articles">'));
+
+          // pages list
+          $form.append($('<ul id="pagination">'));
+
+          $form.appendTo('body');
+        }
+
+        function addNewArticle(id, title, snippet) {
+          const $article = $('<li>');
+
+          // title
+          const $articleTitle = $('<p>');
+
+          const $boldTitle = $('<b>').text(title);
+          const $articleId = $('<span>').text(`${id} - `);
+
+          $articleTitle.append($articleId, $boldTitle);
+
+          // body
+          const $articleBody = $('<p>').html(snippet);
+
+          $article.append($articleTitle, $articleBody);
+
+          $('#articles').append($article);
+        }
+
+        function queryWikipedia(search, offset = 0) {
+          $.ajax({
+            url: 'https://en.wikipedia.org/w/api.php',
+            data: {
+              action: 'query',
+              list: 'search',
+              srsearch: search,
+              format: 'json',
+              // inclusion for CORS functionality
+              origin: '*',
+              sroffset: offset
+            },
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+
+              $('#articles').html('');
+
+              // create array of article objects (based on search)
+              const searchResults = data.query.search;
+
+              searchResults.forEach((result) => {
+                addNewArticle(result.pageid, result.title, result.snippet);
+              });
+
+              const numArticles = data.query.searchinfo.totalhits;
+              const itemsPerPage = 10;
+
+              buildPagination(numArticles, itemsPerPage, offset);
+            }
+          });
+        }
+
+        function buildPagination(numberOfItems, itemsPerPage, currentOffset) {
+          $('#pagination').html('');
+
+          // round up because any remainder articles will go to new page
+          const numPages = Math.ceil(numberOfItems / itemsPerPage);
+
+          for (let i = 0; i < numPages; i++) {
+            const $pageNumber = $('<li>').text(i + 1);
+            const itemsOffset = (i * itemsPerPage);
+
+            $pageNumber.on('click', function() {
+              queryWikipedia($('#search').val(), itemsOffset);
+            });
+
+            $pageNumber.css({
+              'cursor': 'pointer',
+              'margin-left': '10px',
+              'display': 'inline',
+              'list-style': 'none'
+            });
+
+            // style for currently selected page number
+            if (itemsOffset === currentOffset) {
+              $pageNumber.css('font-weight', 'bold');
+            }
+
+            $('#pagination').append($pageNumber);
+          }
+        }
+
+        createSearchForm();
+      });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+
