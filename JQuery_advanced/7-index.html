@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 7</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous">
+    </script>
+    <script>
+      $(document).ready(function() {
+        function createSearchForm() {
+          const $form = $('<form>');
+
+          // search inputs
+          const $searchField = $('<input>').attr('type', 'text');
+
+          $form.append($searchField);
+
+          // submit button
+          const $submitButton = $('<input>').attr({
+            'type': 'submit',
+            'value': 'Submit'
+          });
+
+          $form.append($submitButton);
+
+          // click functionality
+          $form.on('submit', function(event) {
+            event.preventDefault();
+
+            const searchQuery = $searchField.val();
+
+            queryWikipedia(searchQuery);
+          });
+
+          // ul element
+          $form.append($('<ul id="articles">'));
+
+          $form.appendTo('body');
+        }
+
+        function addNewArticle(id, title, snippet) {
+          const $article = $('<li>');
+
+          // title
+          const $articleTitle = $('<p>');
+
+          const $boldTitle = $('<b>').text(title);
+          const $articleId = $('<span>').text(`${id} - `);
+
+          $articleTitle.append($articleId, $boldTitle);
+
+          // body
+          const $articleBody = $('<p>').html(snippet);
+
+          $article.append($articleTitle, $articleBody);
+
+          $('#articles').append($article);
+        }
+
+        function queryWikipedia(search) {
+          $.ajax({
+            url: 'https://en.wikipedia.org/w/api.php',
+            data: {
+              action: 'query',
+              list: 'search',
+              srsearch: search,
+              format: 'json',
+              // inclusion for CORS functionality
+              origin: '*'
+            },
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+              // create array of article objects (based on search)
+              const searchResults = data.query.search;
+
+              searchResults.forEach((result) => {
+                addNewArticle(result.pageid, result.title, result.snippet);
+              });
+            }
+          });
+        }
+
+        createSearchForm();
+      });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+
