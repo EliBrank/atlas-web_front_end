@@ -1,27 +1,27 @@
 {
   "posts": [
     {
-      "title": "json-server",
-      "author": "typicode",
+      "title": "whacky smacky",
+      "author": "eli",
       "id": 1
     },
     {
-      "title": "fd",
-      "author": "fffff",
+      "title": "carrot on a stick",
+      "author": "the magician",
       "id": 2
     },
     {
-      "title": "fd",
-      "author": "fffff",
+      "title": "heresy",
+      "author": "doug",
       "id": 3
     },
     {
-      "title": "f",
-      "author": "f",
+      "title": "fumbledore",
+      "author": "groucho",
       "id": 4
     },
     {
-      "title": "jar",
+      "title": "jar jar stinks",
       "author": "eli",
       "id": 5
     },
@@ -46,9 +46,19 @@
       "id": 9
     },
     {
-      "title": "sock-it-to-me",
+      "title": "knife time",
       "author": "xi",
       "id": 10
+    },
+    {
+      "id": "a01a",
+      "author": "eli",
+      "title": "blorbous"
+    },
+    {
+      "id": "c3f2",
+      "author": "jacobo",
+      "title": "night shades"
     }
   ],
   "comments": [
@@ -59,6 +69,6 @@
     }
   ],
   "profile": {
-    "name": "typicode"
+    "name": "eli"
   }
 }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 10</title>
+    <style>
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous">
+    </script>
+    <script>
+      $(document).ready(function() {
+        function addPostRow(data) {
+
+          const $post = $('<p>');
+          const $postInfo = $('<span>')
+            .text(`Post created with id ${data.id}, title: ${data.title}, author: ${data.author}`);
+
+          $post.append($postInfo);
+
+          $('body').append($post);
+        }
+
+        function listPosts() {
+          $.get('http://localhost:3000/posts', function(response) {
+            response.forEach((item) => {
+              addPostRow(item);
+            });
+          })
+          .fail(function() {
+            alert('Server Error');
+          });
+        }
+
+        function buildForm() {
+          const $form = $('<form>');
+
+          // author
+          const $author = $('<div>').addClass('author-section');
+
+          const $authorLabel = $('<label>')
+            .attr('for', 'author')
+            .text('Author');
+          const $authorInput = $('<input>').attr({
+            'input': 'text',
+            'id': 'author'
+          });
+
+          $author.append($authorLabel, $authorInput);
+
+          // title
+          const $title = $('<div>').addClass('title-section');
+
+          const $titleLabel = $('<label>')
+            .attr('for', 'title')
+            .text('Title');
+          const $titleInput = $('<textarea>').attr({
+            'name': 'title',
+            'id': 'title'
+          });
+
+          $title.append($titleLabel, $titleInput);
+
+          // submit button
+          const $submitButton = $('<input>').attr({
+            'type': 'submit',
+            'value': 'Submit'
+          });
+
+          $form.append($author, $title, $submitButton);
+
+          $form.on('submit', function(event) {
+            event.preventDefault();
+
+            sendForm();
+          });
+
+          $form.appendTo('body');
+        }
+
+        function sendForm() {
+          const $queryNotice = $('<p id="query-notice">')
+            .text('About to send the query to the API');
+          $('form').after($queryNotice);
+
+          const data = JSON.stringify({
+            author: $('#author').val(),
+            title: $('#title').val()
+          });
+
+          $.post('http://localhost:3000/posts', data, function(response) {
+            addPostRow(response);
+            }).fail(function() {
+              alert('Error sending the POST query');
+            }).always(function() {
+              $('#query-notice').remove();
+            });
+        }
+
+        listPosts();
+        buildForm();
+      });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+
