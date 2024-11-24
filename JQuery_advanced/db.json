@@ -3,67 +3,32 @@
     {
       "title": "whacky smacky",
       "author": "eli",
-      "id": 1
+      "id": "1"
     },
     {
       "title": "carrot on a stick",
       "author": "the magician",
-      "id": 2
-    },
-    {
-      "title": "heresy",
-      "author": "doug",
-      "id": 3
+      "id": "2"
     },
     {
       "title": "fumbledore",
       "author": "groucho",
-      "id": 4
+      "id": "4"
     },
     {
       "title": "jar jar stinks",
       "author": "eli",
-      "id": 5
+      "id": "5"
     },
     {
       "title": "blarg",
       "author": "jimmy",
-      "id": 6
-    },
-    {
-      "title": "melbo",
-      "author": "alex",
-      "id": 7
-    },
-    {
-      "title": "sandwich",
-      "author": "cassandra",
-      "id": 8
-    },
-    {
-      "title": "chumbawumba",
-      "author": "tim",
-      "id": 9
-    },
-    {
-      "title": "knife time",
-      "author": "xi",
-      "id": 10
-    },
-    {
-      "id": "a01a",
-      "author": "eli",
-      "title": "blorbous"
-    },
-    {
-      "id": "c3f2",
-      "author": "jacobo",
-      "title": "night shades"
+      "id": "6"
     }
   ],
   "comments": [
     {
-      "id": 1,
+      "id": "1",
       "body": "some comment",
       "postId": 1
     }
