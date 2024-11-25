@@ -14,13 +14,13 @@
           const email = document.getElementById('email').value;
 
           // expiration logic
-          let time = new Date();
+          const time = new Date();
           // expire time is 10 days: 1000ms * 60s * 60m * 24hr * 10d = 864000000
           const expireTime = time.getTime() + 864000000;
-          time = time.setTime(timeToExpire).toUTCString();
+          time.setTime(expireTime);
 
-          document.cookie = `firstName=${firstName};expires=${time}`;
-          document.cookie = `email=${email};expires=${time}`;
+          document.cookie = `firstName=${firstName};expires=${time.toUTCString()}`;
+          document.cookie = `email=${email};expires=${time.toUTCString()}`;
         }
 
         function showCookies() {
