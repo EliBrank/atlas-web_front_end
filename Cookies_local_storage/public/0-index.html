@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies 00</title>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        function setCookies(event) {
+          event.preventDefault();
+
+          const firstName = document.getElementById('firstName').value;
+          const email = document.getElementById('email').value;
+
+          document.cookie = `firstName=${firstName}`;
+          document.cookie = `email=${email}`;
+        }
+
+        function showCookies() {
+          const cookies = document.cookie;
+          const cookiesContainer = document.createElement('p');
+          cookiesContainer.textContent = `Cookies: ${cookies}`;
+
+          document.body.append(cookiesContainer);
+        }
+
+        const loginForm = document.getElementById('login-form');
+        const showCookiesBtn = document.getElementById('show-cookies-btn');
+
+        loginForm.addEventListener('submit', setCookies);
+        showCookiesBtn.addEventListener('click', showCookies);
+      })
+    </script>
+
+  </head>
+  <body>
+
+    <section id="section-login">
+      <h1>Login to the website</h1>
+      <form id="login-form">
+        <input type="text" id="firstName" placeholder="Firstname">
+        <input type="text" id="email" placeholder="Email">
+        <button type="submit" id="login-btn">Log me in</button>
+      </form>
+    </section>
+
+    <section id="section-cookies">
+      <h1>Cookies</h1>
+      <button type="button" id="show-cookies-btn">Show the cookies</button>
+    </section>
+
+  </body>
+</html>
