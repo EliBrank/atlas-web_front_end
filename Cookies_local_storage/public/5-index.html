@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies 05</title>
+
+    <style>
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const availableItems = [
+          'Shampoo',
+          'Soap',
+          'Sponge',
+          'Water'
+        ];
+
+        function localStorageAvailable() {
+          const test = 'test';
+
+          try {
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test, test);
+
+            return true;
+          } catch(error) {
+            alert('Sorry, your browser does not support Web storage. Try again with a better one');
+            return false;
+          }
+        }
+
+        function addItemToCart(item) {
+          localStorage.setItem(item, true);
+        }
+
+        if (localStorageAvailable()) {
+          function createStore() {
+            const body = document.querySelector('body');
+            const store = document.createElement('ul');
+
+            for (const item of availableItems) {
+              const listing = document.createElement('li');
+              listing.textContent = item;
+
+              listing.addEventListener('click', () => {
+                addItemToCart(item);
+              });
+              store.appendChild(listing);
+            }
+
+            body.appendChild(store);
+          }
+
+          function displayCart() {
+            const cartItems = localStorage.length
+
+            if (cartItems > 0) {
+              const body = document.querySelector('body');
+              const cartItemsNotice = document.createElement('p');
+              cartItemsNotice.textContent = `You previously had ${cartItems} items in your cart`;
+
+              body.appendChild(cartItemsNotice);
+            }
+          }
+
+        }
+
+        createStore();
+        displayCart();
+
+      });
+    </script>
+
+  </head>
+  <body>
+  </body>
+</html>
